@@ -18,7 +18,7 @@
  var sourceClassRegex = new RegExp("class[ ]*=[ ]*[\"'][A-Za-z0-9 _-]*['\"]","igm");
  var sourceIdRegex = new RegExp("id[ ]*=[ ]*[\"'][A-Za-z0-9_-]*['\"]","igm");
  
- var cssClassRegex = new RegExp("[\\.][A-Za-z0-9-_]+","igm");
+ var cssClassRegex = new RegExp("\\.[A-Za-z0-9-_]+","igm");
  var cssIdRegex = new RegExp("#[A-Za-z0-9-_]+","igm");
 
  var cssRules = {};
@@ -86,28 +86,31 @@ function parseSrc(filename){
 	var classes = contents.match(sourceClassRegex);
 	var ids = contents.match(sourceIdRegex);
 
-
-	for(var i = 0; i < ids.length; i++){
-		var rule;
-		if (ids[i].indexOf("'") > 0){
-			rule = "#"+ids[i].substring(ids[i].indexOf("'")+1,ids[i].length-1);
-		} else {
-			rule = "#"+ids[i].substring(ids[i].indexOf('"')+1,ids[i].length-1);
+	if (ids){
+		for(var i = 0; i < ids.length; i++){
+			var rule;
+			if (ids[i].indexOf("'") > 0){
+				rule = "#"+ids[i].substring(ids[i].indexOf("'")+1,ids[i].length-1);
+			} else {
+				rule = "#"+ids[i].substring(ids[i].indexOf('"')+1,ids[i].length-1);
+			}
+			usedRules[rule] = 1;
 		}
-		usedRules[rule] = 1;
 	}
 
-	for(var i = 0; i < classes.length; i++){
-		var rule;
-		if (classes[i].indexOf("'") > 0){
-			rule = classes[i].substring(classes[i].indexOf("'")+1,classes[i].length-1);
-		} else {
-			rule = classes[i].substring(classes[i].indexOf('"')+1,classes[i].length-1);
+	if (classes){
+		for(var i = 0; i < classes.length; i++){
+			var rule;
+			if (classes[i].indexOf("'") > 0){
+				rule = classes[i].substring(classes[i].indexOf("'")+1,classes[i].length-1);
+			} else {
+				rule = classes[i].substring(classes[i].indexOf('"')+1,classes[i].length-1);
+			}
+			var rules = rule.split(" ");
+			for (var j = 0; j < rules.length; j++) {
+			 	usedRules["."+rules[j]] = 1;
+			 };
 		}
-		var rules = rule.split(" ");
-		for (var j = 0; j < rules.length; j++) {
-		 	usedRules["."+rules[j]] = 1;
-		 };
 	}
 }
 
