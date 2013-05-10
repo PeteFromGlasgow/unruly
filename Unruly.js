@@ -1,11 +1,11 @@
 /**
- * Rule Scrape
+ * Unruly
  *
  * Find potential CSS rules in source code and compare them to rules in a
- * CSS or LESS source file to find potentially unused code 
+ * CSS or LESS source file to find potentially unused rules
  * 
  * Usage:
- * 	node RuleScrape -c [css/less files] -s [source files]
+ * 	node Unruly -c [css/less files] -s [source files]
  * 
  */
 
@@ -110,9 +110,6 @@ function parseSrc(filename){
 		 };
 	}
 }
-
-//console.log(cssRules);
-//console.log(usedRules);
 
 for (rule in cssRules) {
 	if (!usedRules[rule]){
