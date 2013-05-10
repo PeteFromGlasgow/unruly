@@ -18,7 +18,7 @@
  var sourceClassRegex = new RegExp("class[ ]*=[ ]*[\"'][A-Za-z0-9 _-]*['\"]","igm");
  var sourceIdRegex = new RegExp("id[ ]*=[ ]*[\"'][A-Za-z0-9_-]*['\"]","igm");
  
- var cssClassRegex = new RegExp("\.[A-Za-z0-9-_]+","igm");
+ var cssClassRegex = new RegExp("[\\.][A-Za-z0-9-_]+","igm");
  var cssIdRegex = new RegExp("#[A-Za-z0-9-_]+","igm");
 
  var cssRules = {};
