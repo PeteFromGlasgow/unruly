@@ -21,6 +21,8 @@
  var cssClassRegex = new RegExp("\\.[A-Za-z0-9-_]+","igm");
  var cssIdRegex = new RegExp("#[A-Za-z0-9-_]+","igm");
 
+ var colorRegex = new RegExp("");
+
  var cssRules = {};
  var usedRules = {};
 
@@ -69,14 +71,19 @@ function parseCss(filename){
 	var classes = contents.match(cssClassRegex);
 	var ids = contents.match(cssIdRegex);
 
-
-	for (var i = classes.length - 1; i >= 0; i--) {
-		cssRules[classes[i]] = 1;
-	};
-
-	for (var i = ids.length - 1; i >= 0; i--) {
-		cssRules[ids[i]] = 1;
-	};
+	if (classes){
+		for (var i = classes.length - 1; i >= 0; i--) {
+			cssRules[classes[i]] = 1;
+		};
+	}
+	if (ids){
+		for (var i = ids.length - 1; i >= 0; i--) {
+			//Attempt to ignore all colors.
+			if (ids[i].search(/#([a-f]|[A-F]|[0-9]){3}(([a-f]|[A-F]|[0-9]){3})?\b/) == -1){
+				cssRules[ids[i]] = 1;
+			}
+		};
+	}
 
 
 }

@@ -1,0 +1,29 @@
+{
+  "name": "unruly",
+  "description": "A very basic hacked together CSS usage checker.",
+  "version": "0.1.1",
+  "author": {
+    "name": "Peter Kinnaird",
+    "email": "peter@peterkinnaird.eu"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/c0n5pir4cy/unruly"
+  },
+  "bugs": {
+    "mail": "bugs@peterkinnaird.eu ",
+    "url": "http://github.com/c0n5pir4cy/unruly/issues"
+  },
+  "main": "Unruly",
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "licenses": [
+    {
+      "type": "Apache",
+    }
+  ],
+  "readmeFilename": "README.md",
+  "_id": "unruly@0.1.1",
+  "_from": "unruly@"
+}
