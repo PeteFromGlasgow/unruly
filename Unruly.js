@@ -21,7 +21,7 @@
  var cssClassRegex = new RegExp("\\.[A-Za-z0-9-_]+","igm");
  var cssIdRegex = new RegExp("#[A-Za-z0-9-_]+","igm");
 
- var colorRegex = new RegExp("");
+ var ruleRegex = new RegExp("[@A-Za-z0-9-]*[ ]*[:][A-Za-z0-9.() %=@\"#,\\-_/?]*[;]?","g");
 
  var cssRules = {};
  var usedRules = {};
@@ -68,6 +68,8 @@ function handleSourceFileInput(filename){
 
 function parseCss(filename){
 	var contents = ""+fs.readFileSync(filename);
+	contents = contents.replace(ruleRegex,"");
+	console.log(contents);
 	var classes = contents.match(cssClassRegex);
 	var ids = contents.match(cssIdRegex);
 
@@ -78,10 +80,7 @@ function parseCss(filename){
 	}
 	if (ids){
 		for (var i = ids.length - 1; i >= 0; i--) {
-			//Attempt to ignore all colors.
-			if (ids[i].search(/#([a-f]|[A-F]|[0-9]){3}(([a-f]|[A-F]|[0-9]){3})?\b/) == -1){
-				cssRules[ids[i]] = filename;
-			}
+			cssRules[ids[i]] = filename;
 		};
 	}
 
