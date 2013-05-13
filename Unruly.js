@@ -4,6 +4,8 @@
  * Find potential CSS rules in source code and compare them to rules in a
  * CSS or LESS source file to find potentially unused rules
  * 
+ * Version 0.1.1
+ * 
  * Usage:
  * 	node Unruly -c [css/less files] -s [source files]
  * 
